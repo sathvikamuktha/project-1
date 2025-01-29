@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    color: #000;
+}
+
+.search-bar input {
+    padding: 5px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border: none;
+    background-color: #ff9292e8;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #ff5757;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+    background-color: #fdffda;
+}
+
+.marketplace-image {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.description p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #555;
+}
+
+.button {
+    display: inline-block;
+    background-color: #7f7dff7c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 15px;
+}
+
+.dress-card {
+    display: block; 
+    text-decoration: none;
+    color: inherit;
+    background: white;
+    padding: 10px;
+    width: 180px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+.dress-card:hover {
+    transform: scale(1.05);
+}
+.dress-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+.dress-card p {
+    font-size: 12px;
+    color: #555;
+}
+.price {
+    color: rgb(0, 255, 106);
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+.dress-container {
+    display: flex;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+    width: 300px;
+    border-radius: 5px;
+}
+
+.dress-details {
+    margin-left: 30px;
+}
+
+.dress-details h1 {
+    color: #0056D2;
+}
+
+.new {
+    color: green;
+    font-weight: bold;
+}
+
+.price {
+    font-weight: bold;
+    color: #000;
+}
+
+.offers {
+    color: gray;
+}
+
+.description {
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.edit {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.delete {
+    background-color: #e5e7eb;
+    color: gray;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #b9a5ff;
+    color: white;
+    border-top: 1px solid #000000;
+    font-size: 0.9em;
+    color: #333;
+    margin-top: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Main Section */
+#form {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 50px;
+}
+
+#info {
+    max-width: 400px;
+}
+
+#info h2 {
+    color: #0400ffa8;
+    font-size: 24px;
+}
+
+#info p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Form Container */
+#form-container {
+    background: rgb(255, 155, 155);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 10px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#sell-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#sell-form label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#sell-form input, #sell-form select, #sell-form textarea {
+    padding: 8px;
+    border: 1px solid #ffffff00;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#sell-form button {
+    background-color: #1f1be0;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
