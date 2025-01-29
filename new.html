@@ -33,62 +33,44 @@
 
             <div id="form-container">
                 <form id="sell-form">
-                    <label for="condition">Condition</label>
-                    <select id="condition" name="condition">
+
+                    <label for="title">Dress Title / Type: </label>
+                    <input type="text" id="title" name="title" placeholder="Eg: Casual wear, party wear ..." required>
+    
+                    <label for="dress-size">Size:</label>
+                    <select id="dress-size" name="dress-size" required>
+                        <option value="">Select size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+
+                    <label for="price">Price (USD):</label>
+                    <input type="number" id="price" name="price" placeholder="Enter the price" required>
+    
+                    <label for="seller">Seller:</label>
+                    <input type="text" id="seller" name="seller" placeholder="Enter your name" required>
+    
+                    <label for="condition">Condition:</label>
+                    <select id="condition" name="condition" required>
                         <option value="">Select Condition</option>
                         <option value="New">New</option>
-                        <option value="New">Gently used</option>
-                        <option value="New">Good</option>
-                        <option value="Used">Used</option>
+                        <option value="like-new">Like-New</option>
+                        <option value="good">Good</option>
+                        <option value="used">Fair</option>
                     </select>
-                    <div>
-                        <label for="dress-size">Size:</label>
-                        <select id="dress-size" name="dress-size" required>
-                            <option value="">Select size</option>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                        </select>
-                    </div> 
-
-
-                    <!-- 
-                
-                <div>
-                <label for="dress-condition">Condition:</label>
-                <select id="dress-condition" name="dress-condition" required>
-                    <option value="">Select condition</option>
-                    <option value="new">New</option>
-                    <option value="like-new">Like New</option>
-                    <option value="good">Good</option>
-                    <option value="fair">Fair</option>
-                </select>
-            </div>
-        
-        <div>
-                <label for="dress-price">Price (USD):</label>
-                <input type="number" id="dress-price" name="dress-price" placeholder="Enter the price" required>
-            </div>
-        -->
     
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title">
+                    <label for="details">Details:</label>
+                    <textarea id="details" name="details"></textarea required>
     
-                    <label for="seller">Seller</label>
-                    <input type="text" id="seller" name="seller">
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" name="image" required>
+                    
+                    <input type="reset" value="Reset">
+                    <input type="submit" value="Submit">
     
-                    <label for="price">Price</label>
-                    <input type="text" id="price" name="price">
-    
-                    <label for="details">Details</label>
-                    <textarea id="details" name="details"></textarea>
-    
-                    <label for="image">Image</label>
-                    <input type="file" id="image" name="image">
-    
-                    <button type="submit">Submit</button>
                 </form>
             </div>
 
@@ -99,9 +81,9 @@
     <footer>
         <p>&copy; 2025 Bloom Boutique. All rights reserved.</p>
         <p>
-            <a href="#">instagram</a>
-            <a href="#">facebook</a>
-            <a href="#">pinterst</a>
+            <a href="https://www.instagram.com">instagram</a>
+            <a href="https://www.facebook.com">facebook</a>
+            <a href="https://www.pinterst.com">pinterst</a>
         </p>
     </footer>
 </body>
