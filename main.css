@@ -1,11 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-body {
-    font-family: Arial, sans-serif;
+} 
+
+html, body {
+    height: 100%;
+    display: flex;
+    font-family: sans-serif;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -16,15 +19,59 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #f4f4f4;
+    background-color: #ded4ff;
     border-bottom: 1px solid #ddd;
 }
+
+main {
+    padding: 20px;
+    text-align: center;
+    background-color: #fdffda;
+    flex: 1; 
+    width: 100%;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px; 
+    background-color: #b9a5ff;
+    border-top: 1px solid #000000;
+    font-size: 0.9em;
+    color: #333;
+    width: 100%; 
+    height: 70px;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 10px;
+}
+
+footer a:hover {
+    text-decoration:underline;
+}
+
+
+
 
 .logo {
     font-size: 1.5em;
     font-weight: bold;
     color: #333;
 }
+.logo img {
+    height: 50px; /* Adjust logo size */
+    width: auto; /* Keep aspect ratio */
+    display: block; /* Avoid extra spacing */
+}
+
 
 nav ul {
     list-style: none;
@@ -72,11 +119,6 @@ nav ul li a:hover {
     background-color: #ff5757;
 }
 
-main {
-    padding: 20px;
-    text-align: center;
-    background-color: #fdffda;
-}
 
 .marketplace-image {
     max-width: 100%;
@@ -96,13 +138,19 @@ main {
     background-color: #7f7dff7c;
     color: white;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
+
+    padding: 12px 24px;
+    font-size: 1em;
+    margin-top: 3px;
+    transition: 0.3s ease-in-out;
 }
-
-
-
+.button:hover {
+    background-color: #ff2e63;
+    transform: scale(1.1);
+}
 
 
 
@@ -215,16 +263,6 @@ main {
     color: gray;
 }
 
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #b9a5ff;
-    color: white;
-    border-top: 1px solid #000000;
-    font-size: 0.9em;
-    color: #333;
-    margin-top: 30px;
-}
 
 #form {
     display: flex;
@@ -250,15 +288,13 @@ footer {
 
 #form-container {
     background: rgb(255, 155, 155);
-    padding: 40px;
+    padding: 25px;
     border-radius: 10px;
     box-shadow: 10px 4px 10px rgba(0, 0, 0, 0.1);
     max-width: 500px;  
-    width: 100%; 
+    width: 50%; 
     margin: auto; 
 }
-
-
 
 #sell-form {
     display: flex;
@@ -268,9 +304,11 @@ footer {
 }
 
 #sell-form label {
-    flex: 0 0 100%;
+    flex: 0 0 35%;
     font-weight: bold;
     margin-top: 0px;
+    text-align: left;
+    padding-right: 5px;
 }
 
 #sell-form input, #sell-form select, #sell-form textarea {
@@ -291,6 +329,7 @@ footer {
     flex: 1 1 100%;
 }
 
+
 #sell-form input[type="submit"], #sell-form input[type="reset"] {
     flex: 1 1 48%;
     background-color: #1f1be0;
@@ -306,3 +345,50 @@ footer {
 #sell-form input[type="reset"]:hover {
     background-color: rgba(106, 58, 228, 0.742);
 }
+
+
+
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding: 50px 30px;
+    background: #fdffda;
+}
+
+.feature {
+    text-align: center;
+    width: 180px;
+    padding: 15px;
+    background: rgba(219, 205, 255, 0.742);
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.3s ease-in-out;
+}
+.feature:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.feature img {
+    width: 60px;
+    height: 60px;
+    padding: 1px;
+    margin-bottom: 15px;
+    border-radius: 30%; 
+    border: 2px solid #ff577f; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #f4f4f4;
+}
+
+.feature h3 {
+    font-size: 18px;
+    color: #ff577f;
+}
+
+.feature p {
+    /* font-size: 1em; */
+    font-size: 14px; /* Reduce description text size */
+    color: #000000;
+}
+
