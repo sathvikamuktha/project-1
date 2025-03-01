@@ -1,6 +1,5 @@
 const items = require('../models/items');
 const { v4: uuidv4 } = require('uuid');
-
 exports.getAllItems = (req, res) => {
     const searchTerm = req.query.search;
     let sortedItems = items.sort((a, b) => a.price - b.price);
@@ -15,14 +14,10 @@ exports.getAllItems = (req, res) => {
     const message = sortedItems.length === 0 ? 'Searched item can not be found :(' : null;
     res.render('items', { items: sortedItems, message: message });
 };
-
-
 //form to add a new item
 exports.showNewItemForm = (req, res) => {
    res.render('./sell');
 };
-
-
 exports.createNewItem = (req, res) => {
     const { title, seller, condition, price, details } = req.body;
  
