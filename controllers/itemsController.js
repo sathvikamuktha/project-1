@@ -94,8 +94,6 @@ exports.updateItem = (req, res, next) => {
         res.status(404).send("Item not found");
     }
  };
-
-
 // Delete an item
 exports.deleteItem = (req, res, next) => {
    const itemId = req.params.id;
