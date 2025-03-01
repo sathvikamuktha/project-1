@@ -1,0 +1,22 @@
+<%- include('partials/header.ejs') %>
+
+<main>
+    <div class="container">
+        <% if (message) { %>
+            <p><%= message %></p>
+        <% } else { %>
+            <% items.forEach(item => { %>
+                <div class="dress-card">
+                    <img src="<%= item.image %>" alt="<%= item.title %>">
+                    <h3><%= item.title %></h3>
+                    <p class="price">Price: $<%= item.price.toFixed(2) %></p>
+                    <p>Condition: <%= item.condition %></p>
+                    <p>Seller: <%= item.seller %></p>
+                    <a href="/items/<%= item.id %>">View Details</a>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</main>
+
+<%- include('./partials/footer.ejs') %>

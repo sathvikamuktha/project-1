@@ -1,0 +1,26 @@
+<%- include('partials/header.ejs') %>
+
+<main>
+    <div class="dress-container">
+        <div class="product-image">
+            <img src="<%= item.image %>" alt="<%= item.title %>">
+        </div>
+        <div class="dress-details">
+            <h1><%= item.title %></h1>
+            <p><strong>Condition:</strong> <span class="new"><%= item.condition %></span></p>
+            <p><strong>Price:</strong> <span class="price">$<%= item.price.toFixed(2) %></span></p>
+            <p><strong>Seller:</strong> <%= item.seller %></p>
+            <p><strong>Offers:</strong> <span class="offers">0 offers</span></p>
+            <p><strong>Details:</strong> <%= item.details %></p>
+            <div class="buttons">
+                <a href="/items/<%= item.id %>/edit"><button class="edit">Edit</button></a>
+                <form action="/items/<%= item.id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="delete">Delete</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>

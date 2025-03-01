@@ -1,0 +1,58 @@
+<%- include('partials/header.ejs')%>
+
+<main>
+    <section id="form">
+        <div id="info">
+            <h2>Sell at Bloom Boutique</h2>
+            <p>Sell your pre-loved dresses to help the environment.</p>
+        </div>
+
+        <div id="form-container">
+            <form id="sell-form" action="/items" method="POST" enctype="multipart/form-data">
+
+                <label for="title">Dress Title / Type: </label>
+                <input type="text" id="title" name="title" placeholder="Eg: Casual wear, party wear ..." required>
+
+                <label for="dress-size">Size:</label>
+                <select id="dress-size" name="dress-size" required>
+                    <option value="">Select size</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+
+                <label for="price">Price (USD):</label>
+                <input type="number" id="price" name="price" placeholder="Enter the price" required>
+
+                <label for="seller">Seller:</label>
+                <input type="text" id="seller" name="seller" placeholder="Enter your name" required>
+
+                <label for="condition">Condition:</label>
+                <select id="condition" name="condition" required>
+                    <option value="">Select Condition</option>
+                    <option value="New">New (with tag)</option>
+                    <option value="like-new">Like-New</option>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                    <option value="Used">Used</option>
+                </select>
+
+                <label for="details">Details:</label>
+                <textarea id="details" name="details" required></textarea>
+
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" required>
+                
+                <input type="reset" value="Reset">
+                <input type="submit" value="Submit">
+
+            </form>
+            
+        </div>
+
+    
+    </section>
+</main>
+<%- include('partials/footer.ejs') %>
