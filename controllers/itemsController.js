@@ -20,7 +20,6 @@ exports.showNewItemForm = (req, res) => {
 };
 exports.createNewItem = (req, res) => {
     const { title, seller, condition, price, details } = req.body;
- 
     const newItem = {
         id: uuidv4(), 
         title: title || "No Title",
@@ -51,8 +50,6 @@ exports.getItemById = (req, res, next) => {
         next(error);
    }
 };
-
-
 //edit form for an item
 exports.showEditForm = (req, res, next) => {
     const itemId = req.params.id;
@@ -65,7 +62,6 @@ exports.showEditForm = (req, res, next) => {
        next(error);
     }
 };
-
 exports.updateItem = (req, res, next) => {
     const itemId = req.params.id;
     const item = items.find(i => i.id === itemId);
@@ -77,13 +73,11 @@ exports.updateItem = (req, res, next) => {
         item.price = parseFloat(price);
         item.seller = seller;
         item.details = details;
- 
         //image
         if (req.file) {
             item.image = ('/img/' + req.file.filename);
         }
         console.log(item);
-
         res.redirect('/items');
     } else {
         res.status(404).send("Item not found");
