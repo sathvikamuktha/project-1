@@ -9,12 +9,10 @@ let port = 3000;
 let host = 'localhost';
 app.set('view engine', 'ejs');
 
-
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(methodOverride('_method')); 
-
 app.use('/items', itemsRoutes);
 
 // Render home page
