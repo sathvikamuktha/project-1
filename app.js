@@ -46,7 +46,6 @@ app.use((err, req, res, next)=>{
     res.status(err.status);
     res.render('error', {error: err});
 });
-
 // Start the server
 const PORT = 3000;
 app.listen(PORT, () => {
