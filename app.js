@@ -29,8 +29,6 @@ app.get('/login', (req, res) => {
 app.get('/signup', (req, res) => {
     res.render('signup');
 });
-
-
 //error stuff
 app.use((req, res, next) =>{
     let err = new Error('The server cannot locate ' + req.url);
