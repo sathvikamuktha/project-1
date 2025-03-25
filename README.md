@@ -37,4 +37,4 @@ I built an Express.js web application using the MVC (Model-View-Controller) patt
 ``/items/delete/:id`` : Delete an existing item.
 
 
-** This project is developed as part of a course assignment **
+**This project is developed as part of a course assignment**
