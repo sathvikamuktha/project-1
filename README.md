@@ -17,13 +17,12 @@ I built an Express.js web application using the MVC (Model-View-Controller) patt
 ### http://localhost:3000/ ###
 
 ## File Structure
-- app.js: Main application file that sets up the Express server.
-- routes: Contains route modules to handle requests.
-- controllers: Includes controller functions for each route.
+- app.js : Main application file that sets up the Express server.
+- itemsRoutes.js : Contains route modules to handle requests.
+- itemsController.js : Includes controller functions for each route.
+- models/items.js : Contains data models representing items.
 - views: EJS templates that render the pages.
 - partials: Reusable components like headers and footers.
-- models: Contains data models representing items.
-
 
 **This project is developed as part of a course assignment**
 
