@@ -14,7 +14,8 @@ I built an Express.js web application using the MVC (Model-View-Controller) patt
    ``
    npm install
    ``
-## http://localhost:3000/ ##
+### http://localhost:3000/ ###
+
 ## File Structure
 - app.js: Main application file that sets up the Express server.
 - routes: Contains route modules to handle requests.
@@ -22,19 +23,6 @@ I built an Express.js web application using the MVC (Model-View-Controller) patt
 - views: EJS templates that render the pages.
 - partials: Reusable components like headers and footers.
 - models: Contains data models representing items.
-
-## Available Routes:
-``/`` : Landing page that displays all active items.
-
-``/items`` : View all items for sale (can also be used for searching).
-
-``/items/:id`` : View details of a specific item.
-
-``/items/new`` : Display form to create a new item.
-
-``/items/edit/:id`` : Form to edit an existing item.
-
-``/items/delete/:id`` : Delete an existing item.
 
 
 **This project is developed as part of a course assignment**
