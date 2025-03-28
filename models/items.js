@@ -60,6 +60,5 @@ const items = [
         image: "/img/d6.png",
         active: true
     },
-   
 ];
 module.exports = items;
