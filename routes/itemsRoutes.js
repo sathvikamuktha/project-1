@@ -10,4 +10,5 @@ router.get('/:id', itemsController.getItemById); // Get item details
 router.get('/:id/edit', itemsController.showEditForm); // Form to edit an item
 router.put('/:id', fileUpload, itemsController.updateItem); // Update an item
 router.delete('/:id', itemsController.deleteItem); // Delete an item
+
 module.exports = router;
