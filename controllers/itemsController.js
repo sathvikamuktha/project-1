@@ -1,98 +1,169 @@
-const items = require('../models/items');
-const { v4: uuidv4 } = require('uuid');
-exports.getAllItems = (req, res) => {
-    const searchTerm = req.query.search;
-    let sortedItems = items.sort((a, b) => a.price - b.price);
-    if (searchTerm) {
-        sortedItems = sortedItems.filter(item => {
-            return (
+const mongoose = require("mongoose");
+const Item = require('../models/items');
+
+// Show all items
+exports.getAllItems = async (req, res, next) => {
+    try {
+        const searchTerm = req.query.search;
+        let items = await Item.find();
+
+        if (searchTerm) {
+            items = items.filter(item =>
                 item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 item.details.toLowerCase().includes(searchTerm.toLowerCase())
             );
-        });
-    } 
-    const message = sortedItems.length === 0 ? 'Searched item can not be found :(' : null;
-    res.render('items', { items: sortedItems, message: message });
-};
-//form to add a new item
-exports.showNewItemForm = (req, res) => {
-   res.render('./sell');
-};
-exports.createNewItem = (req, res) => {
-    const { title, seller, condition, price, details } = req.body;
-    const newItem = {
-        id: uuidv4(), 
-        title: title || "No Title",
-        seller: seller || "Unknown Seller",
-        condition: condition || "Unknown Condition",
-        price: price ? parseFloat(price) : 0.00,
-        details: details || "No details provided",
-        active: true 
-    };
-    if (req.file) {
-        newItem.image = ('/img/' + req.file.filename);
-    }
-    console.log(newItem);
+        }
 
-    items.push(newItem);
-    res.redirect('/items');
- };
+        items.sort((a, b) => a.price - b.price);
+        const message = items.length === 0 ? 'Searched item cannot be found :(' : null;
+
+        res.render('items', { items, message });
+    } catch (err) {
+        next(err);
+    }
+};
+
+// Form to add a new item
+exports.showNewItemForm = (req, res) => {
+    res.render('./sell');
+};
+
+// Create a new item
+exports.createNewItem = async (req, res, next) => {
+    try {
+        const { title, seller, condition, price, details } = req.body;
+        const image = req.file ? `/img/${req.file.filename}` : null;
+
+        const newItem = new Item({
+            title,
+            seller,
+            condition,
+            price: parseFloat(price),
+            details,
+            image,
+            active: true
+        });
+
+        await newItem.save();
+        res.redirect('/items');
+    } catch (err) {
+        if (err.name === 'ValidationError') {
+            err.status = 400;
+            err.message = 'Validation failed: Please check your input data';
+        }
+        next(err);
+    }
+};
 
 // Get an item by ID
-exports.getItemById = (req, res, next) => {
-   const itemId = req.params.id;
-   const item = items.find(i => i.id === itemId);
-   if (item) {
-       res.render('item', { item });
-   } else {
-        const error = new Error(`Cannot find an item with id '${itemId}'`);
-        error.status = 404;
-        next(error);
-   }
-};
-//edit form for an item
-exports.showEditForm = (req, res, next) => {
-    const itemId = req.params.id;
-   const item = items.find(i => i.id === itemId);
-   if (item) {
-        res.render('edit', { item });
-    } else {
-       const error = new Error('Item not found');
-       error.status = 404;
-       next(error);
+exports.getItemById = async (req, res, next) => {
+    try {
+        const itemId = req.params.id;
+
+        if (!mongoose.Types.ObjectId.isValid(itemId)) {
+            const err = new Error("Invalid item ID format");
+            err.status = 400;
+            return next(err);
+        }
+
+        const item = await Item.findById(itemId);
+
+        if (!item) {
+            const err = new Error("Item not found");
+            err.status = 404;
+            return next(err);
+        }
+
+        res.render("item", { item });
+    } catch (err) {
+        next(err);
     }
 };
-exports.updateItem = (req, res, next) => {
-    const itemId = req.params.id;
-    const item = items.find(i => i.id === itemId);
-    if (item) {
+
+// Edit form for an item
+exports.showEditForm = async (req, res, next) => {
+    try {
+        const itemId = req.params.id;
+
+        if (!mongoose.Types.ObjectId.isValid(itemId)) {
+            const err = new Error("Invalid item ID format");
+            err.status = 400;
+            return next(err);
+        }
+
+        const item = await Item.findById(itemId);
+        if (!item) {
+            const err = new Error("Item not found");
+            err.status = 404;
+            return next(err);
+        }
+
+        res.render("edit", { item });
+    } catch (err) {
+        next(err);
+    }
+};
+
+// Update an item 
+exports.updateItem = async (req, res, next) => {
+    try {
+        const itemId = req.params.id;
+
+        if (!mongoose.Types.ObjectId.isValid(itemId)) {
+            const err = new Error("Invalid item ID format");
+            err.status = 400;
+            return next(err);
+        }
+
+        const item = await Item.findById(itemId);
+        if (!item) {
+            const err = new Error("Item not found");
+            err.status = 404;
+            return next(err);
+        }
+
         const { title, condition, price, seller, details } = req.body;
- 
         item.title = title;
         item.condition = condition;
         item.price = parseFloat(price);
         item.seller = seller;
         item.details = details;
-        //image
+
         if (req.file) {
-            item.image = ('/img/' + req.file.filename);
+            item.image = '/img/' + req.file.filename;
         }
-        console.log(item);
+
+        await item.save();
         res.redirect('/items');
-    } else {
-        res.status(404).send("Item not found");
+    } catch (err) {
+        if (err.name === 'ValidationError') {
+            err.status = 400;
+            err.message = 'Validation failed: Please check your input data';
+        }
+        next(err);
     }
- };
+};
+
 // Delete an item
-exports.deleteItem = (req, res, next) => {
-   const itemId = req.params.id;
-   const itemIndex = items.findIndex(i => i.id === itemId);
-   if (itemIndex !== -1) {
-       items.splice(itemIndex, 1);
-       res.redirect('/items');
-   } else {
-       let err = new Error("Item not found");
-       err.status = 404;
-       next(error);
-   }
+exports.deleteItem = async (req, res, next) => {
+    try {
+        const itemId = req.params.id;
+
+        if (!mongoose.Types.ObjectId.isValid(itemId)) {
+            const err = new Error("Invalid item ID format");
+            err.status = 400;
+            return next(err);
+        }
+
+        const deletedItem = await Item.findByIdAndDelete(itemId);
+        if (!deletedItem) {
+            const err = new Error("Item not found");
+            err.status = 404;
+            return next(err);
+        }
+
+        res.redirect('/items');
+    } catch (err) {
+        next(err);
+    }
 };
