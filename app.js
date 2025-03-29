@@ -1,29 +1,51 @@
 const express = require('express');
 const app = express();
 const methodOverride = require('method-override');
+const mongoose = require('mongoose');
+
 const items = require('./models/items');
 const itemsRoutes = require('./routes/itemsRoutes'); 
+
+const mongUri = 'mongodb+srv://smuktha:sathvika@cluster0.h70tx.mongodb.net/MukthaSathvikasriProject3?retryWrites=true&w=majority&appName=Cluster0';
+
+
+mongoose.connect(mongUri)
+.then(()=> {
+    app.listen(port, host, ()=>{
+        console.log('Server is running on port', port);
+    });
+})
+.catch(err=>console.log(err.message));
+
 // configure app
 let port = 3000;
 let host = 'localhost';
 app.set('view engine', 'ejs');
+
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(methodOverride('_method')); 
+
 app.use('/items', itemsRoutes);
+
 // Render home page
 app.get('/', (req, res) => {
     res.render('index');
 });
+
 // Render login page
 app.get('/login', (req, res) => {
     res.render('login');
 });
+
 // Render signup page
 app.get('/signup', (req, res) => {
     res.render('signup');
 });
+
+
 //error stuff
 app.use((req, res, next) =>{
     let err = new Error('The server cannot locate ' + req.url);
@@ -39,8 +61,9 @@ app.use((err, req, res, next)=>{
     res.status(err.status);
     res.render('error', {error: err});
 });
+
 // Start the server
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+// const PORT = 3000;
+// app.listen(PORT, () => {
+//     console.log(`Server running on http://localhost:${PORT}`);
+// });
