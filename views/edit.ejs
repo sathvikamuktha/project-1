@@ -16,8 +16,6 @@
             <option value="Fair" <%= item.condition === "Fair" ? "selected" : "" %>>Fair</option>
             <option value="Used" <%= item.condition === "Used" ? "selected" : "" %>>Used</option>
         </select>        
-        
-
         <label for="price">Price (USD):</label>
         <input type="number" name="price" value="<%= item.price %>" required>
 
