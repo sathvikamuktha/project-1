@@ -1,4 +1,4 @@
-I building an Express.js web application using the MVC (Model-View-Controller) pattern and the EJS template engine. The application simulates a marketplace where users can manage items for sale. The project includes functionality to view, add, edit, delete, and search items.
+Building an Express.js web application using the MVC (Model-View-Controller) pattern and the EJS template engine. The application simulates a marketplace where users can manage items for sale. The project includes functionality to view, add, edit, delete, and search items.
 ## Tech Stack:
 - Backend: Express.js
 - Template Engine: EJS
