@@ -23,7 +23,7 @@ Building an Express.js web application using the MVC (Model-View-Controller) pat
 - itemsController.js : Includes controller functions for each route.
 - models/items.js : Contains data models representing items.
 - views: EJS templates that render the pages.
-- partials: Reusable components like headers and footers.
+- partials: Reusable components like headers and footers. 
 
 **This project is developed as part of a course assignment**
 
