@@ -17,17 +17,17 @@ exports.create = (req, res, next) => {
     .catch(err => {
         if(err.name === 'ValidationError') {
             req.flash('error', err.message);  
-            return res.redirect('/users/new');
+            return res.redirect('/user/new');
         }
 
         if(err.code === 11000) {
             req.flash('error', 'This email address is already in use. Please use a different email.');  
-            return res.redirect('/users/new');
+            return res.redirect('/user/new');
         }
         
         console.error('Registration error:', err);
         req.flash('error', 'An error occurred during registration. Please try again using different email.');
-        res.redirect('/users/new');
+        res.redirect('/user/new');
     });
 };
 

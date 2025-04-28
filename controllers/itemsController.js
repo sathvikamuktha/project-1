@@ -16,7 +16,9 @@ exports.search = async (req, res, next) => {
             ];
         }
 
-        const items = await Item.find(query).sort({ price: 1 });
+        const items = await Item.find(query).sort({ price: 1 }).populate('seller');
+        // const item = await Item.findById(itemId).populate('seller'); 
+
 
         res.render('items', { 
             items, 
@@ -85,9 +87,7 @@ exports.getItemById = async (req, res, next) => {
             return next(err);
         }
 
-        // const item = await Item.findById(itemId);
-        const item = await Item.findById(itemId).populate('seller', 'firstName'); 
-        // const item = await Item.findById(itemId).populate('seller');
+        const item = await Item.findById(itemId).populate('seller'); 
 
         if (!item) {
             const err = new Error("Item not found");
@@ -195,7 +195,7 @@ exports.deleteItem = async (req, res, next) => {
             err.status = 404;
             return next(err);
         }
-
+        req.flash('success', 'Item deleted successfully!');
         res.redirect('/items');
     } catch (err) {
         next(err);
