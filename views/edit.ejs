@@ -16,17 +16,24 @@
             <option value="Fair" <%= item.condition === "Fair" ? "selected" : "" %>>Fair</option>
             <option value="Used" <%= item.condition === "Used" ? "selected" : "" %>>Used</option>
         </select>        
+        
+
         <label for="price">Price (USD):</label>
         <input type="number" name="price" value="<%= item.price %>" required>
+
         <label for="seller">Seller:</label>
         <input type="text" name="seller" value="<%= item.seller %>" required>
+
         <label for="details">Details:</label>
         <textarea name="details" required><%= item.details %></textarea>
+
         <label for="image">Image:</label>
         <!-- <input type="file" name="image" value="<%= item.image %>"> -->
         <input type="file" name="image" id="image" value="<%= item.image %>">
         <button type="submit">Update</button>
+        
     </form>
     </div>
 </main>
+
 <%- include('partials/footer.ejs') %>
