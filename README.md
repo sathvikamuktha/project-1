@@ -30,6 +30,4 @@ Building an Express.js web application using the MVC (Model-View-Controller) pat
 - partials: Reusable components like headers and footers. 
 
 **This project is developed as part of a course assignment**
-<img width="1470" alt="Screenshot 2025-03-26 at 2 40 14 PM" src="https://github.com/user-attachments/assets/0e6e9469-31a7-4254-b9ee-7e4ba759412f"/>
 <img width="1467" alt="image" src="https://github.com/user-attachments/assets/5c6dcb25-e544-4e1d-9195-b4e0e9e8e271" />
-
