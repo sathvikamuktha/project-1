@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>item - Bloom Boutique</title>
+        <title>Bloom Boutique</title>
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -23,7 +23,7 @@
                     <li><a href="/user/login">Login</a></li>
                     <li><a href="/user/new">Sign Up</a></li>
                     <%} else {%>
-                    <li><a href="/user/profile">My account</a></li>
+                    <li><a href="/user/profile"><%=user.firstName%> Account</a></li>
                     <li><a href="/user/logout">Log out</a></li>
                     <%}%>
 
@@ -37,20 +37,19 @@
             </div>        
         </header>
 
-        <% if(errorMessages.length > 0) {%>
-            <% errorMessages.forEach(message=>{%>
-                <div class='error'>
-                    <%=message%>
-                </div>
-                <%});%>
-                    <%}%>
-        
-                        <% if(successMessages.length > 0) {%>
-        
-                            <% successMessages.forEach(message=>{%>
-                                <div class='success'>
-                                    <%=message%>
-                                </div>
-                                <%});%>
-                                    <%}%>
-    
+
+     <% if(errorMessages.length > 0) { %>
+        <div class="alert alert-danger">
+          <% errorMessages.forEach(message => { %>
+            <p><%= message %></p>
+          <% }); %>
+        </div>
+      <% } %>
+      
+      <% if(successMessages.length > 0) { %>
+        <div class="alert alert-success">
+          <% successMessages.forEach(message => { %>
+            <p><%= message %></p>
+          <% }); %>
+        </div>
+      <% } %>

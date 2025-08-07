@@ -6,9 +6,13 @@ const userSchema = new Schema({
     firstName: {type: String, required: [true, 'first name is required']},
     lastName: {type: String, required: [true, 'last name is required']},
     email: {type: String, required: [true, 'email address is required'], unique: [true, 'this email address has been used'] },
-    password: { type: String, required: [true, 'password is required'] },
-}
-);
+	password: {
+        type: String, 
+        required: [true, 'Password is required'],
+        minlength: [8, 'Password must be at least 8 characters'],
+        maxlength: [64, 'Password cannot exceed 64 characters']
+    }
+});
 
 
 userSchema.pre('save', function (next) {

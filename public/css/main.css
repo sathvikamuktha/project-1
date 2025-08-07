@@ -153,7 +153,7 @@
   .description p {
       font-size: 1.2em;
       margin: 10px 0;
-      color: #555;
+      color: #000000;
   }
   
   .button {
@@ -250,8 +250,11 @@
       color: #000;
   }
   
-  .offers {
+  .offers, .status {
       color: gray;
+  }
+  .status {
+    color: #6739ff;
   }
   
   .description {
@@ -303,6 +306,17 @@
       background-color: #dc2626;
       transform: scale(1.05);
   }
+
+  .offer {
+    background-color: #c5b3ff;
+    color: white;
+    border: 2px solid #71f8f8;
+}
+
+.offer:hover {
+    background-color: #8560ff;
+    transform: scale(1.05);
+}
   
   
   
@@ -423,9 +437,9 @@
       padding: 1px;
       margin-bottom: 15px;
       border-radius: 30%; 
-      border: 2px solid #ff577f; 
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      background: #f4f4f4;
+      /* border: 2px solid #ff577f;  */
+      box-shadow: 0px 4px 5px #ff819f;
+      background: #ff819e90;
   }
   
   .feature h3 {
@@ -455,7 +469,7 @@
   }
   
   .login-container h2 {
-      color: #333;
+      color: #000000;
       margin-bottom: 15px;
   }
   
@@ -491,3 +505,138 @@
       background-color: #e74c6f;
   }
   
+
+
+
+
+
+
+
+.user-item {
+    border: 1px solid #d5d5d5;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.buttons {
+    margin-top: 10px;
+}
+
+.buttons button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Add this to your main.css file */
+.user-info {
+    margin-bottom: 30px;
+    background: #e7deffbd;
+    /* background: rgb(255, 242, 242); */
+    padding: 20px;
+    /* background-color: #f8f9fa; */
+    border-radius: 8px;
+}
+
+.user-item {
+    background: rgb(255, 242, 242);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgb(185, 185, 185);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-item h3 {
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.user-item h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.user-item h3 a:hover {
+    color: #ff577f;
+}
+
+.user-item p {
+    margin: 8px 0;
+    color: #000000;
+}
+
+.user-item .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.user-item .buttons a,
+.user-item .buttons form {
+    flex: 1;
+}
+
+.user-item .buttons button {
+    width: 100%;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.user-item .buttons .edit {
+    background-color: #2563eb;
+    color: white;
+}
+
+.user-item .buttons .edit:hover {
+    background-color: #1d4ed8;
+    transform: scale(1.02);
+}
+
+.user-item .buttons .delete {
+    background-color: #f87171;
+    color: white;
+}
+
+.user-item .buttons .delete:hover {
+    background-color: #dc2626;
+    transform: scale(1.02);
+}
+
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  
+  .alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
+  
+  .alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }

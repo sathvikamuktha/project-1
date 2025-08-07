@@ -1,0 +1,47 @@
+<%- include('partials/header.ejs')%>
+
+<title>Offers</title>    
+    <main>
+        <h1>Offers for <%= item.title %></h1>
+        <section class="user-item">
+
+        
+        <% if (offers.length === 0) { %>
+            <p>No offers have been made for this item yet.</p>
+        <% } else { %>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Buyer</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <% if (isActive) { %>
+                            <th>Action</th>
+                        <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% offers.forEach(offer => { %>
+                        <tr>
+                            <td><strong><%= offer.buyer.firstName %> <%= offer.buyer.lastName %></strong></td>
+                            <td><span class="new"> $ <%= offer.amount.toFixed(2) %> </span> </td>
+                            <td><%= offer.status %></td>
+                            <% if (isActive) { %>
+                                <td>
+                                    <form method="POST" action="/items/<%= item._id %>/offers/<%= offer._id %>/accept?_method=PUT">
+                                        <button type="submit" class="edit">Accept</button>
+                                    </form>
+                                </td>
+                            <% } %>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+        
+        </section>
+        
+        <a href="/user/profile" class="user-item">Back to Profile</a>
+    </main>
+    
+<%- include('partials/footer.ejs') %>

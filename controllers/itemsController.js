@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const Item = require('../models/items');
+const Offer = require('../models/offer');
+const validator = require('validator');
+const { validateItem, validateOffer } = require('../middleware/validator');
 
 
 // Show all items
@@ -24,7 +27,7 @@ exports.search = async (req, res, next) => {
             items, 
             searchTerm: searchTerm || "",
             userName: req.session.userName,
-            message: items.length === 0 ? 'Searched item cannot be found :(' : null
+            message: items.length === 0 ? 'No Dresses are available :( Please come back later!!' : null
         });
     } catch (err) {
         next(err);
@@ -40,22 +43,52 @@ exports.showNewItemForm = (req, res) => {
 // Create a new item
 exports.createNewItem = async (req, res, next) => {
     try {
+        const newItem = new Item({
+            title: req.body.title,
+            seller: req.session.user,
+            condition: req.body.condition,
+            price: parseFloat(req.body.price),
+            details: req.body.details,
+            image: req.file ? `/img/${req.file.filename}` : null,
+            active: true
+        });
+
+        await newItem.save();
+        req.flash('success', 'Item created successfully!');
+        res.redirect('/items');
+    } catch (err) {
+        next(err);
+    }
+};
+exports.createNewItem = async (req, res, next) => {
+    try {
+
+        if (!validator.isCurrency(req.body.price.toString(), {allow_negatives: false})) {
+            req.flash('error', 'Invalid price format');
+            return res.redirect('/items/new');
+        }
+
         const conditionMap = {
-            'likeNew': 'Like New',
-            'good': 'Good',
+            // 'likeNew': 'Like New',
             'new': 'New',
+            'good': 'Good',
             'used': 'Used',
-            'fair': 'Fair'
+            'fair': 'Fair',
+            'bad': 'Bad',
         };
         
         const condition = conditionMap[req.body.condition] || req.body.condition;
 
         const newItem = new Item({
-            title: req.body.title,
+            // title: req.body.title,
+            title: validator.escape(validator.trim(req.body.title)),
+
             seller: req.session.user,
             condition: condition,
             price: parseFloat(req.body.price),
-            details: req.body.details,
+            // details: req.body.details,
+            details: validator.escape(validator.trim(req.body.details)),
+
             image: req.file ? `/img/${req.file.filename}` : null,
             active: true
         });
@@ -188,6 +221,8 @@ exports.deleteItem = async (req, res, next) => {
             err.status = 400;
             return next(err);
         }
+
+         await Offer.deleteMany({ item: itemId });
 
         const deletedItem = await Item.findByIdAndDelete(itemId);
         if (!deletedItem) {

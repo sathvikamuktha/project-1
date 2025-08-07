@@ -11,7 +11,7 @@
                     <h3><%= item.title %></h3>
                     <p class="price">Price: $<%= item.price.toFixed(2) %></p>
                     <p>Condition: <%= item.condition %></p>
-                    <p>Seller: <%= item.seller %></p>
+                    <p>Seller: <%= item.seller.firstName %></p>
                     <a href="/items/<%= item.id %>">View Details</a>
                 </div>
             <% }); %>

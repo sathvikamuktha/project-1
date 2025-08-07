@@ -11,18 +11,20 @@
         <select id="condition" name="condition" required>
             <option value="">Select Condition</option>
             <option value="New" <%= item.condition === "New" ? "selected" : "" %>>New (with tag)</option>
-            <option value="Like-new" <%= item.condition === "Like-new" ? "selected" : "" %>>Like-New</option>
+            <!-- <option value="Like-new" <%= item.condition === "Like-new" ? "selected" : "" %>>Like-New</option> -->
             <option value="Good" <%= item.condition === "Good" ? "selected" : "" %>>Good</option>
             <option value="Fair" <%= item.condition === "Fair" ? "selected" : "" %>>Fair</option>
             <option value="Used" <%= item.condition === "Used" ? "selected" : "" %>>Used</option>
+            <option value="Bad" <%= item.condition === "Bad" ? "selected" : "" %>>Bad</option>
+
         </select>        
         
 
         <label for="price">Price (USD):</label>
         <input type="number" name="price" value="<%= item.price %>" required>
 
-        <label for="seller">Seller:</label>
-        <input type="text" name="seller" value="<%= item.seller %>" required>
+        <!-- <label for="seller">Seller:</label>
+        <input type="text" name="seller" value="<%= item.seller %>" required> -->
 
         <label for="details">Details:</label>
         <textarea name="details" required><%= item.details %></textarea>

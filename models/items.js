@@ -14,7 +14,7 @@ const itemSchema = new Schema({
     condition: { 
         type: String, 
         required: [true, "Condition is required"],
-        enum: ["New", "Like New", "Good", "Used", "Fair"],
+        enum: ["New", "Good", "Used", "Fair", "Bad"],
     },
     price: {
         type: Number,
@@ -23,7 +23,10 @@ const itemSchema = new Schema({
     },
     details: { type: String, required: [true, "Details is required"] },
     image: { type: String, required: [true, "Image is required"] },
-    active: { type: Boolean, default: true }
+    active: { type: Boolean, default: true },
+    totalOffers: { type: Number, default: 0 },
+    highestOffer: { type: Number, default: 0 }
+
 }, {timestamps: true});
 
 module.exports = mongoose.model("Item", itemSchema);

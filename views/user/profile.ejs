@@ -1,0 +1,96 @@
+<%- include('../partials/header.ejs') %>
+
+<main>
+    <section class="user-info">
+        <h2>Welcome, <%= user.firstName %>!</h2>
+    </section>
+
+    <section class="user-items">
+        <% if (items.length) { %>
+            <div class="items-list">
+                <h2>My Listing:</h2>
+                    <br>
+                <% items.forEach(item => { %>
+                    <div class="user-item">
+                        <div class="card-body">
+                            <!-- <h5 class="card-title"><a href='/items/<%= item._id %>'><%= item.title %></a></h5> -->
+                            <u><h3><a href='/items/<%= item.id%>'><p><%=item.title%></p></a></h3></u>
+
+                            <p class="card-text"><strong>Price: </strong> $<%= item.price.toFixed(2) %></p>
+                            <p class="card-text"><strong>Status: </strong> <%= item.active ? 'Available' : 'Sold' %></p>
+
+                            <% if (item.totalOffers > 0) { %>
+                                <p class="card-text"> <strong> Offers: </strong><%= item.totalOffers %> | <span class="new"><strong> Highest: </strong> $<%= item.highestOffer.toFixed(2) %> </span> </p>
+                            <% } %>
+
+                            <div class="buttons">
+                                
+                                <a href="/items/<%= item.id %>/edit"><button class="edit">Edit</button></a>
+                            
+                                <form action="/items/<%= item.id %>?_method=DELETE" method="POST">
+                                    <button type="submit" class="delete">Delete</button>
+                                </form>
+
+                                <% if (item.totalOffers > 0) { %>
+                                    <a href="/items/<%= item.id %>/offers"><button class="offer">View Offers</button></a>
+                                <% } else { %>
+                                    <button class="offer" disabled>No Offers</button>
+                                <% } %>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %> 
+            <div class="user-item" ><p>You haven't listed any items yet.</p> </div>
+        <% } %>
+    </section>
+
+    <br>
+    <h2>My Offers: </h2>
+
+    <section class="user-item">
+
+        <% if (offers.length) { %>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Your Offer</th>
+                            <th>Status</th>
+                            <th>Item Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% offers.forEach(offer => { %>
+                            <tr>
+                                <td>
+                                    <a href="/items/<%= offer.item.id %>"><%= offer.item.title %></a>
+                                </td>
+                                <td>$<%= offer.amount.toFixed(2) %></td>
+                                <td>
+                                    <span class="badge 
+                                        <%= offer.status === 'accepted' ? 'bg-success' : 
+                                            offer.status === 'rejected' ? 'bg-danger' : 'bg-warning' %>">
+                                        <%= offer.status %>
+                                    </span>
+                                </td>
+                                <td>
+                                    <%= offer.item.active ? 'Available' : 'Sold' %>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <p>You haven't made any offers yet.</p>
+        <% } %>
+    </section>
+</main>
+
+<%- include('../partials/footer.ejs') %>

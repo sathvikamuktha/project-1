@@ -9,22 +9,42 @@
             <h1><%= item.title %></h1>
             <p><strong>Condition:</strong> <span class="new"><%= item.condition %></span></p>
             <p><strong>Price:</strong> <span class="price">$<%= item.price.toFixed(2) %></span></p>
-            <p><strong>Seller:</strong> <%= item.seller%></p>
+            <p><strong>Seller:</strong> <%= item.seller.firstName + ' ' + item.seller.lastName %></p>
 
-            <p><strong>Offers:</strong> <span class="offers">0 offers</span></p>
+            <!-- <p><strong>Offers:</strong> <span class="offers">0 offers</span></p> -->
+            <!-- <p><strong>Status:</strong> <span class="status">Active</span></p>          -->
+            <br>   
             <p><strong>Details:</strong> <%= item.details %></p>
+            <br>
 
-            <% if (isOwner) { %> 
-            <div class="buttons">
-                <a href="/items/<%= item.id %>/edit"><button class="edit">Edit</button></a>
-                <form action="/items/<%= item.id %>?_method=DELETE" method="POST">
-                    <button type="submit" class="delete">Delete</button>
-                </form>
-            </div>
-            <% } %>
+            <!-- Add this where you want to show offer stats -->
+             <% if (item.active) { %>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <!-- <h5 class="card-title">Offer Information</h5> -->
+                        <p class="card-text">
 
+                            <strong>Total Offers: </strong><%= item.totalOffers %>
+                            <% if (item.totalOffers > 0) { %>
+                            <br><br>
+                            <span class="new">Highest Offer: $<%= item.highestOffer.toFixed(2) %> </span>
+                            <% } %>
+                        </p>
+                        <form method="POST" action="/items/<%= item.id %>/offers">
+                            <div class="form-group">
+                              <label for="amount">Your Offer ($)</label>
+                              <input type="number" step="0.01" min="0.01" 
+                                     class="form-control" id="amount" name="amount" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Offer</button>
+                          </form>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div><u><strong>This item has been SOLD. This item is no longer available!!</strong></u></div>
+                <% } %>
         </div>
-    </div>
+     </div>
 </main>
 
 <%- include('partials/footer.ejs') %>
