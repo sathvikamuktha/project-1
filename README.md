@@ -1,5 +1,3 @@
-**Status: Work In Progress** [This project is still under development. Some features are incomplete & are subject to change.]
-
 ## Description:
 Building an Express.js web application using the MVC (Model-View-Controller) pattern and the EJS template engine. The application simulates a marketplace where users can manage items for sale. The project includes functionality to view, add, edit, delete, and search items.
 
